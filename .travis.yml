@@ -1,7 +1,11 @@
-language: C
-rvm:
- - 2.2
- - jruby
- - rbx-2
-# uncomment and edit the following line if your project needs to run something other than `rake`:
-# script: bundle exec rspec spec
+install: make get-deps
+./configure && make && make test
+language: cpp
+script: scons
+compiler: clang
+compiler:
+  - clang++
+  - g++
+  before_install:
+  - test -n $CC  && unset CC
+  - test -n $CXX && unset CXX
